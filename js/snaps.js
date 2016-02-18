@@ -1,4 +1,4 @@
-var es_endpoint = "http://localhost:9200/";
+var es_endpoint = "http://" + document.location.hostname + ":9200/";
 
 $.getJSON(es_endpoint + "_snapshot", function(snapshot_config) {
   var getNextSnapshot, html, keys;
