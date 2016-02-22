@@ -27,16 +27,20 @@ $.getJSON(es_endpoint + "_snapshot", function(snapshot_config) {
 });
 
 function Restore(key, snapshot){
-   $.post(es_endpoint + "_snapshot/" + key + "/" + snapshot + "/_restore");
+  if(confirm("Are you sure you want to restore?")) {
+    $.post(es_endpoint + "_snapshot/" + key + "/" + snapshot + "/_restore");
+  }
 }
 
 function Delete(key, snapshot){
    var delete_url = es_endpoint + "_snapshot/" + key + "/" + snapshot;
-   $.ajax({
-       type: 'DELETE',
-       url: delete_url,
-       success: function() {
-           location.reload();
-       }
-   });
+   if(confirm("Are you sure you want to delete?")) {
+     $.ajax({
+         type: 'DELETE',
+         url: delete_url,
+         success: function() {
+             location.reload();
+         }
+     });
+   }
 }
